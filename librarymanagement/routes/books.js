@@ -60,7 +60,7 @@ router.post("/addbook", async (req, res) => {
 
         const book = await newBook.save();
 
-        await BookCategory.updateMany({ '_id': book.categories }, { $push: { books: book._id } });
+        await BookCategory.updateone({ '_id': book.categories }, { $push: { books: book._id } });
 
         res.status(200).json(book);
     } catch (err) {
